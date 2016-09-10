@@ -1656,7 +1656,11 @@
       var runtime = new Runtime();
       var interpreter = new TreeInterpreter(runtime);
       runtime._interpreter = interpreter;
-      var node = parser.parse(expression);
+      if(runtime._getTypeName(expression) ===  TYPE_EXPREF) {
+        var node = expression;
+      } else {
+        var node = parser.parse(expression);
+      }
       return interpreter.search(node, data);
   }
 
